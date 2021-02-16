@@ -17,4 +17,7 @@ jobs:
       run: sudo xcode-select -switch /Applications/Xcode_12.3.app
 
     - name: Build and test
-      run: xcodebuild clean build test -workspace Brick.xcodeproj -scheme "Brick" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
+      run: xcodebuild clean build test Brick.xcodeproj -scheme "Brick" -sdk iphonesimulator -destination "platform=iOS Simulator,name=iPhone 11" ONLY_ACTIVE_ARCH=NO CODE_SIGNING_REQUIRED=NO
+    
+    - name: fastlane
+      run: fastlane scan
