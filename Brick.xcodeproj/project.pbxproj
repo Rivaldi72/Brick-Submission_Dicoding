@@ -55,6 +55,7 @@
 		506B404D25725346005BCB94 /* SDWebImageSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 506B404C25725346005BCB94 /* SDWebImageSwiftUI */; };
 		506B4051257253A6005BCB94 /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 506B4050257253A6005BCB94 /* Alamofire */; };
 		506E335C25A21B3900191FC2 /* SideBar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 506E335B25A21B3900191FC2 /* SideBar.swift */; };
+		5075ECEA25DC2FCF00C2ED4C /* BrickLogicTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5075ECE925DC2FCF00C2ED4C /* BrickLogicTests.swift */; };
 		507ACA232576A0D800360AA1 /* Street Photography.otf in Resources */ = {isa = PBXBuildFile; fileRef = 507ACA222576A0D800360AA1 /* Street Photography.otf */; };
 		507ACA262576A21400360AA1 /* Poppins-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 507ACA252576A21400360AA1 /* Poppins-Regular.ttf */; };
 		507ACA292576A27900360AA1 /* Poppins-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 507ACA282576A27900360AA1 /* Poppins-Light.ttf */; };
@@ -66,6 +67,16 @@
 		FF013F5325837E840036BF44 /* FavoriteInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF013F5225837E840036BF44 /* FavoriteInteractor.swift */; };
 		FF82AC3825A44A5100459612 /* LoadingComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = FF82AC3725A44A5100459612 /* LoadingComponent.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		5075ECEC25DC2FCF00C2ED4C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 506B402B25725148005BCB94 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 506B403225725148005BCB94;
+			remoteInfo = Brick;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		50004045259DB89E00FE4277 /* SearchInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchInteractor.swift; sourceTree = "<group>"; };
@@ -112,6 +123,9 @@
 		506B40422572514B005BCB94 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		506B40442572514B005BCB94 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		506E335B25A21B3900191FC2 /* SideBar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideBar.swift; sourceTree = "<group>"; };
+		5075ECE725DC2FCF00C2ED4C /* BrickLogicTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BrickLogicTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		5075ECE925DC2FCF00C2ED4C /* BrickLogicTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BrickLogicTests.swift; sourceTree = "<group>"; };
+		5075ECEB25DC2FCF00C2ED4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		507ACA222576A0D800360AA1 /* Street Photography.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Street Photography.otf"; sourceTree = "<group>"; };
 		507ACA252576A21400360AA1 /* Poppins-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Regular.ttf"; sourceTree = "<group>"; };
 		507ACA282576A27900360AA1 /* Poppins-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Poppins-Light.ttf"; sourceTree = "<group>"; };
@@ -135,6 +149,13 @@
 				5058D9802572600800D7ED8A /* RxCocoa in Frameworks */,
 				506B404D25725346005BCB94 /* SDWebImageSwiftUI in Frameworks */,
 				506B4051257253A6005BCB94 /* Alamofire in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5075ECE425DC2FCF00C2ED4C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -475,6 +496,7 @@
 			isa = PBXGroup;
 			children = (
 				506B403525725148005BCB94 /* Brick */,
+				5075ECE825DC2FCF00C2ED4C /* BrickLogicTests */,
 				506B403425725148005BCB94 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -483,6 +505,7 @@
 			isa = PBXGroup;
 			children = (
 				506B403325725148005BCB94 /* Brick.app */,
+				5075ECE725DC2FCF00C2ED4C /* BrickLogicTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -505,6 +528,15 @@
 				506B403F2572514B005BCB94 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		5075ECE825DC2FCF00C2ED4C /* BrickLogicTests */ = {
+			isa = PBXGroup;
+			children = (
+				5075ECE925DC2FCF00C2ED4C /* BrickLogicTests.swift */,
+				5075ECEB25DC2FCF00C2ED4C /* Info.plist */,
+			);
+			path = BrickLogicTests;
 			sourceTree = "<group>";
 		};
 		50A7F8AC2575C26200093EF6 /* Fonts */ = {
@@ -549,17 +581,39 @@
 			productReference = 506B403325725148005BCB94 /* Brick.app */;
 			productType = "com.apple.product-type.application";
 		};
+		5075ECE625DC2FCF00C2ED4C /* BrickLogicTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5075ECF025DC2FCF00C2ED4C /* Build configuration list for PBXNativeTarget "BrickLogicTests" */;
+			buildPhases = (
+				5075ECE325DC2FCF00C2ED4C /* Sources */,
+				5075ECE425DC2FCF00C2ED4C /* Frameworks */,
+				5075ECE525DC2FCF00C2ED4C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				5075ECED25DC2FCF00C2ED4C /* PBXTargetDependency */,
+			);
+			name = BrickLogicTests;
+			productName = BrickLogicTests;
+			productReference = 5075ECE725DC2FCF00C2ED4C /* BrickLogicTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		506B402B25725148005BCB94 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1220;
+				LastSwiftUpdateCheck = 1230;
 				LastUpgradeCheck = 1220;
 				TargetAttributes = {
 					506B403225725148005BCB94 = {
 						CreatedOnToolsVersion = 12.2;
+					};
+					5075ECE625DC2FCF00C2ED4C = {
+						CreatedOnToolsVersion = 12.3;
+						TestTargetID = 506B403225725148005BCB94;
 					};
 				};
 			};
@@ -583,6 +637,7 @@
 			projectRoot = "";
 			targets = (
 				506B403225725148005BCB94 /* Brick */,
+				5075ECE625DC2FCF00C2ED4C /* BrickLogicTests */,
 			);
 		};
 /* End PBXProject section */
@@ -602,6 +657,13 @@
 				506B40402572514B005BCB94 /* Preview Assets.xcassets in Resources */,
 				506B403D2572514B005BCB94 /* Assets.xcassets in Resources */,
 				507ACA262576A21400360AA1 /* Poppins-Regular.ttf in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		5075ECE525DC2FCF00C2ED4C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -657,7 +719,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		5075ECE325DC2FCF00C2ED4C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				5075ECEA25DC2FCF00C2ED4C /* BrickLogicTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		5075ECED25DC2FCF00C2ED4C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 506B403225725148005BCB94 /* Brick */;
+			targetProxy = 5075ECEC25DC2FCF00C2ED4C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		506B40412572514B005BCB94 /* LaunchScreen.storyboard */ = {
@@ -831,6 +909,48 @@
 			};
 			name = Release;
 		};
+		5075ECEE25DC2FCF00C2ED4C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B5EPPNN24C;
+				INFOPLIST_FILE = BrickLogicTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rivaldiscorp.BrickLogicTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Brick.app/Brick";
+			};
+			name = Debug;
+		};
+		5075ECEF25DC2FCF00C2ED4C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = B5EPPNN24C;
+				INFOPLIST_FILE = BrickLogicTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.3;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.rivaldiscorp.BrickLogicTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Brick.app/Brick";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -848,6 +968,15 @@
 			buildConfigurations = (
 				506B40482572514B005BCB94 /* Debug */,
 				506B40492572514B005BCB94 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		5075ECF025DC2FCF00C2ED4C /* Build configuration list for PBXNativeTarget "BrickLogicTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				5075ECEE25DC2FCF00C2ED4C /* Debug */,
+				5075ECEF25DC2FCF00C2ED4C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
