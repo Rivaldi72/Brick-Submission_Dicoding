@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Common
 
 struct TabBar: View {
     
@@ -26,7 +27,7 @@ struct TabBar: View {
                 }) {
                     VStack(alignment: .center, spacing: 3){
                         
-                        Image(index == 1 ? "home_active" : "home_inactive")
+                        Image(uiImage: CommonImage(named: index == 1 ? "home_active" : "home_inactive")!)
                             .resizable()
                             .frame(width: height >= 668 ? 35 : 25, height: height >= 668 ? 35 : 25)
                             .foregroundColor(Color("gray_color"))
@@ -63,7 +64,7 @@ struct TabBar: View {
             Button(action: {
                 isSearch = true
             }) {
-                Image("nav_search")
+                Image(uiImage: CommonImage(named: "nav_search")!)
                     .resizable()
                     .frame(width: height >= 668 ? 95 : 85, height: height >= 668 ? 100 : 90)
                     .shadow(color: Color.black.opacity(0.3), radius: 5, x: 0, y: 3)

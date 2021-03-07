@@ -6,11 +6,12 @@
 //
 
 import SwiftUI
+import Common
 
 struct SideBar: View {
     
     @Binding var profileShow: Bool
-    
+
     var body: some View {
         HStack{
             
@@ -18,7 +19,7 @@ struct SideBar: View {
                 
                 VStack(spacing: 15) {
                     
-                    Image("me")
+                    Image(uiImage: CommonImage(named: "me")!)
                         .resizable()
                         .aspectRatio(contentMode: .fill)
                         .padding(.top, 30)
@@ -54,7 +55,7 @@ struct SideBar: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)))
                                 .frame(width: 50, height: 50)
-                            Image("whatsapp")
+                            Image(uiImage: CommonImage(named: "whatsapp")!)
                                 .resizable()
                                 .frame(width: 30, height: 30)
                         }
@@ -68,7 +69,7 @@ struct SideBar: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)))
                                 .frame(width: 50, height: 50)
-                            Image("instagram")
+                            Image(uiImage: CommonImage(named: "instagram")!)
                                 .resizable()
                                 .frame(width: 30, height: 30)
                         }
@@ -82,7 +83,7 @@ struct SideBar: View {
                             RoundedRectangle(cornerRadius: 10)
                                 .fill(Color(#colorLiteral(red: 0.8039215803, green: 0.8039215803, blue: 0.8039215803, alpha: 1)))
                                 .frame(width: 50, height: 50)
-                            Image("linkedin")
+                            Image(uiImage: CommonImage(named: "linkedin")!)
                                 .resizable()
                                 .frame(width: 25, height: 25)
                         }
@@ -135,7 +136,7 @@ struct SideBar: View {
             }
             .frame(width: UIScreen.main.bounds.width / 1.5)
             .background(
-                Image("bg_home_transparent")
+                Image(uiImage: CommonImage(named: "bg_home_transparent")!)
                     .resizable()
                     .edgesIgnoringSafeArea(.all)
                     .scaledToFill()

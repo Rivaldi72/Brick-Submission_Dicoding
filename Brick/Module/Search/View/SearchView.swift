@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Common
 
 struct SearchView: View {
     
@@ -21,7 +22,7 @@ struct SearchView: View {
             Text("Test")
         }
         .background(
-            Image("bg_search")
+            Image(uiImage: CommonImage(named: "bg_search")!)
                 .resizable()
                 .edgesIgnoringSafeArea(.all)
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
@@ -54,7 +55,7 @@ struct SearchView: View {
                         .cornerRadius(8)
                         .overlay(
                             HStack {
-                                Image("search")
+                                Image(uiImage: CommonImage(named: "search")!)
                                     .resizable()
                                     .frame(width: 17, height: 17)
                                     .frame(minWidth: 0, maxWidth: .infinity, alignment: .leading)

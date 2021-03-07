@@ -7,6 +7,7 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Game
 
 struct CarouselView: View {
     
@@ -15,7 +16,7 @@ struct CarouselView: View {
     @State var screen = UIScreen.main.bounds.width / 1.7
     @State var op : CGFloat = 0
     
-    @Binding var data : [GameModel]
+    @Binding var data : [GameDomainModel]
     
     var body : some View{
         ScrollView{
@@ -85,7 +86,6 @@ struct CarouselView: View {
             }
             .animation(.spring())
             .onAppear {
-                
                 self.op = ((self.screen + 15) * CGFloat(self.data.count / 2)) - (self.data.count % 2 == 0 ? ((self.screen + 15) / 2) : 0)
                 
             }
@@ -94,13 +94,12 @@ struct CarouselView: View {
     
     func updateHeight(value : Int){
         
-        
         for i in 0..<data.count{
             
             data[i].show = false
         }
         
-        data[value].show = true
+        self.data[value].show = true
     }
 }
 
@@ -112,7 +111,7 @@ struct CarouselView: View {
 
 struct CardView : View {
     
-    var data : GameModel
+    var data : GameDomainModel
     
     var body : some View{
         

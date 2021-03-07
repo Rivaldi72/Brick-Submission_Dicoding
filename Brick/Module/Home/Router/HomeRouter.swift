@@ -6,25 +6,41 @@
 //
 
 import SwiftUI
+import Core
+import Game
 
 class HomeRouter {
     
-    func makeDetailView(for game: GameModel) -> some View {
-        let detailUseCase = Injection.init().provideDetail(game: game)
-        let presenter = DetailPresenter(detailUseCase: detailUseCase)
-        return DetailView(presenter: presenter)
+    func makeDetailView(for gameId: Int) -> some View {
+        let detailUseCase : Interactor<
+            Int,
+            GameDomainModel,
+            GetDetailGameRepository<GetAllGamesLocale, DetailGameTransformer>
+        > = Injection.init().provideDetail()
+        
+        let favoriteUseCase: Interactor<Int, Bool, UpdateFavoriteGameRepository<GetAllGamesLocale, DetailGameTransformer>
+        > = Injection.init().provideUpdateFavorite()
+        
+        let presenter = GetDetailPresenter(useCase: detailUseCase)
+        presenter.getDetail(request: gameId)
+        let favoritePresenter = FavoritePresenter(useCase: favoriteUseCase)
+        return DetailView(presenter: presenter, favoritePresenter: favoritePresenter)
     }
-    
+ 
     func makeFavoriteView() -> some View {
-        let favoriteUseCase = Injection.init().provideFavorite()
-        let presenter = FavoritePresenter(favoriteUseCase: favoriteUseCase)
+        let favoriteUseCase: Interactor<
+            Any,
+            [GameDomainModel],
+            GetFavoriteGamesRepository<GetFavoriteGamesLocale, AllGameTransformer>
+        > = Injection.init().provideFavoriteGame()
+        let presenter = GetListPresenter(useCase: favoriteUseCase)
         return FavoriteView(presenter: presenter)
     }
-    
-    func makeSearchView() -> some View {
-        let searchUseCase = Injection.init().provideSearch()
+//    
+//    func makeSearchView() -> some View {
+//        let searchUseCase = Injection.init().provideSearch()
 //        let presenter = SearchPresenter(searchUseCase: searchUseCase)
-        return SearchView()
-    }
+//        return SearchView()
+//    }
     
 }

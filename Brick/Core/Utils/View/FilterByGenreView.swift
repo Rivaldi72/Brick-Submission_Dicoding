@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Common
 
 struct FilterByGenreView: View {
   
@@ -20,7 +21,7 @@ struct FilterByGenreView: View {
       }) {
         VStack(alignment: .center, spacing: 5) {
           
-          Image(index == 1 ? "all_active" : "all_inactive")
+          Image(uiImage: CommonImage(named: index == 1 ? "all_active" : "all_inactive")!)
             .resizable()
             .frame(width: 50, height: 50)
           
@@ -37,7 +38,7 @@ struct FilterByGenreView: View {
       }) {
         VStack(alignment: .center, spacing: 5) {
           
-          Image(index == 2 ? "action_active" : "action_inactive")
+          Image(uiImage: CommonImage(named: index == 2 ? "action_active" : "action_inactive")!)
             .resizable()
             .frame(width: 50, height: 50)
           
@@ -54,7 +55,7 @@ struct FilterByGenreView: View {
       }) {
         VStack(alignment: .center, spacing: 5) {
           
-          Image(index == 3 ? "arcade_active" : "arcade_inactive")
+          Image(uiImage: CommonImage(named: index == 3 ? "arcade_active" : "arcade_inactive")!)
             .resizable()
             .frame(width: 50, height: 50)
           
@@ -71,7 +72,7 @@ struct FilterByGenreView: View {
       }) {
         VStack(alignment: .center, spacing: 5) {
           
-          Image(index == 4 ? "adventure_active" : "adventure_inactive")
+          Image(uiImage: CommonImage(named: index == 4 ? "adventure_active" : "adventure_inactive")!)
             .resizable()
             .frame(width: 50, height: 50)
           
@@ -88,7 +89,7 @@ struct FilterByGenreView: View {
       }) {
         VStack(alignment: .center, spacing: 5) {
           
-          Image("more_inactive")
+          Image(uiImage: CommonImage(named: "more_inactive")!)
             .resizable()
             .frame(width: 50, height: 50)
           

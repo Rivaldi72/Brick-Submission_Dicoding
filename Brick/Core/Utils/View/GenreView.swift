@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Common
 
 struct GenreView: View {
   
@@ -15,7 +16,7 @@ struct GenreView: View {
   var body: some View {
     HStack(alignment: .center, spacing: 3){
       
-      Image(logo)
+      Image(uiImage: CommonImage(named: logo)!)
         .resizable()
         .frame(width: 10, height: 10)
       

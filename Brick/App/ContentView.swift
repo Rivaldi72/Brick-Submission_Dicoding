@@ -6,13 +6,19 @@
 //
 
 import SwiftUI
+import Core
+import Game
 
 struct ContentView: View {
-    @EnvironmentObject var homePresenter: HomePresenter
+    @EnvironmentObject var allGamePresenter: GetListPresenter<Any, GameDomainModel, Interactor<Any, [GameDomainModel], GetAllGamesRepository<GetAllGamesLocale, GetGamesRemoteDataSource, AllGameTransformer>>>
+    
+    @EnvironmentObject var latestGamePresenter: GetListPresenter<Any, GameDomainModel, Interactor<Any, [GameDomainModel], GetLatestGamesRepository<GetLatestGamesLocale, GetGamesRemoteDataSource, LatestGameTransformer>>>
+    
+    @EnvironmentObject var favoritePresenter: FavoritePresenter<Int, Bool, Interactor<Int, Bool, UpdateFavoriteGameRepository<GetAllGamesLocale, DetailGameTransformer>>>
     
     var body: some View {
         NavigationView {
-            HomeView(presenter: homePresenter)
+            HomeView(allGamePresenter: allGamePresenter, latestGamePresenter: latestGamePresenter, favoritePresenter: favoritePresenter)
         }
     }
 }

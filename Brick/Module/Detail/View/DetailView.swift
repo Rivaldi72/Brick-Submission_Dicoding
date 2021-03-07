@@ -7,129 +7,134 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Core
+import Game
 
 struct DetailView: View {
-  @ObservedObject var presenter: DetailPresenter
-  
-  @State var isFavorite = false
-  
-  var body: some View {
-    ZStack {
-      if presenter.loadingState {
-        loadingIndicator
-      } else {
-        
-        ScrollView(.vertical, showsIndicators: false, content: {
-          
-          ZStack(alignment: .bottom){
-            
-            GeometryReader{reader in
-              
-              WebImage(url: URL(string: self.presenter.game.backgroundImage ))
-                .resizable()
-                .aspectRatio(contentMode: .fill)
+    
+    @ObservedObject var presenter: GetDetailPresenter<Int, GameDomainModel, Interactor<Int, GameDomainModel, GetDetailGameRepository<GetAllGamesLocale, DetailGameTransformer>>>
+    @State var isFavorite = false
+    
+    @ObservedObject var favoritePresenter: FavoritePresenter<Int, Bool, Interactor<Int, Bool, UpdateFavoriteGameRepository<GetAllGamesLocale, DetailGameTransformer>>>
+    
+    var body: some View {
+        ZStack {
+            if presenter.isLoading {
+                loadingIndicator
+            } else {
                 
-                .offset(y: -reader.frame(in: .global).minY)
-                
-                .frame(width: UIScreen.main.bounds.width, height:  reader.frame(in: .global).minY + 480)
-              
-              Rectangle()
-                .foregroundColor(.clear)
-                .background(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: .top, endPoint: .bottom))
-                
-                .offset(y: -reader.frame(in: .global).minY)
-                
-                .frame(width: UIScreen.main.bounds.width, height:  reader.frame(in: .global).minY + 480)
-              
-            }.frame(height: 480)
-            
-            Text(self.presenter.game.name)
-              .font(.system(size: 30, weight: .black))
-              .foregroundColor(.white)
-              .multilineTextAlignment(.leading)
-              .padding(.top, -150)
-
-          }
-          
-          ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)){
-            
-            VStack(alignment: .leading, spacing: 15){
-              
-              HStack(spacing: 10){
-                
-                GenreView(logo: "simulation", genre: "Adventure")
-                
-                Spacer()
-                
-                Text("Developer : Rivaldi Aliando")
-                  .font(.custom("Poppins-Medium", size: 12))
-                  .foregroundColor(Color("dark_gray_color"))
-                
-              }
-              .padding(.top, 20)
-              
-              HStack(spacing: 15){
-                
-                RatingView(allGames: self.presenter.game)
-                
-              }
-              
-              Text("Some Scene May Scare Very Young Childrens")
-                .font(.caption)
-                .foregroundColor(.black)
-                .padding(.top,5)
-              
-              Text(plot)
-                .padding(.top, 10)
-                .foregroundColor(.black)
-              
+                ScrollView(.vertical, showsIndicators: false, content: {
+                    
+                    ZStack(alignment: .bottom){
+                        
+                        GeometryReader{reader in
+                            
+                            WebImage(url: URL(string: self.presenter.detailData?.backgroundImage ?? "tidak ada gambar" ))
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                
+                                .offset(y: -reader.frame(in: .global).minY)
+                                
+                                .frame(width: UIScreen.main.bounds.width, height:  reader.frame(in: .global).minY + 480)
+                            
+                            Rectangle()
+                                .foregroundColor(.clear)
+                                .background(LinearGradient(gradient: Gradient(colors: [.clear, .black]), startPoint: .top, endPoint: .bottom))
+                                
+                                .offset(y: -reader.frame(in: .global).minY)
+                                
+                                .frame(width: UIScreen.main.bounds.width, height:  reader.frame(in: .global).minY + 480)
+                            
+                        }.frame(height: 480)
+                        
+                        Text(self.presenter.detailData?.name ?? "Unknown")
+                            .font(.system(size: 30, weight: .black))
+                            .foregroundColor(.white)
+                            .multilineTextAlignment(.leading)
+                            .padding(.top, -150)
+                        
+                    }
+                    
+                    ZStack(alignment: Alignment(horizontal: .trailing, vertical: .top)){
+                        
+                        VStack(alignment: .leading, spacing: 15){
+                            
+                            HStack(spacing: 10){
+                                
+                                GenreView(logo: "simulation", genre: "Adventure")
+                                
+                                Spacer()
+                                
+                                Text("Developer : Rivaldi Aliando")
+                                    .font(.custom("Poppins-Medium", size: 12))
+                                    .foregroundColor(Color("dark_gray_color"))
+                                
+                            }
+                            .padding(.top, 20)
+                            
+                            HStack(spacing: 15){
+                                
+                                //                RatingView(allGames: self.presenter.list)
+                                
+                            }
+                            
+                            Text("Some Scene May Scare Very Young Childrens")
+                                .font(.caption)
+                                .foregroundColor(.black)
+                                .padding(.top,5)
+                            
+                            Text(plot)
+                                .padding(.top, 10)
+                                .foregroundColor(.black)
+                            
+                        }
+                        .padding(.top, 25)
+                        .padding(.horizontal)
+                        .padding(.horizontal)
+                        .background(Color.white)
+                        .cornerRadius(30)
+                        .offset(y: -60)
+                        
+                        Button(action: {
+                            self.favoritePresenter.addToFavorite(request: self.presenter.detailData?.id)
+                            self.isFavorite.toggle()
+                        }) {
+                            ZStack{
+                                Circle()
+                                    .frame(width: 55, height: 55)
+                                    .foregroundColor(Color.white)
+                                    .shadow(radius: 10)
+                                Image(systemName: "heart.fill")
+                                    .resizable()
+                                    .frame(width: 20, height: 20)
+                                    .foregroundColor(self.isFavorite ? Color("red_color") : Color.gray)
+                            }
+                        }.padding(.top, -85)
+                        .padding(.trailing, 30)
+                    }
+                    
+                })
+                .edgesIgnoringSafeArea(.all)
+                .background(Color.white.edgesIgnoringSafeArea(.all))
             }
-            .padding(.top, 25)
-            .padding(.horizontal)
-            .padding(.horizontal)
-            .background(Color.white)
-            .cornerRadius(30)
-            .offset(y: -60)
-            
-            Button(action: {
-                self.presenter.addToFavorite(game: self.presenter.game)
-                self.isFavorite.toggle()
-            }) {
-              ZStack{
-                Circle()
-                  .frame(width: 55, height: 55)
-                  .foregroundColor(Color.white)
-                  .shadow(radius: 10)
-                Image(systemName: "heart.fill")
-                  .resizable()
-                  .frame(width: 20, height: 20)
-                    .foregroundColor(self.isFavorite ? Color("red_color") : Color.gray)
-              }
-            }.padding(.top, -85)
-            .padding(.trailing, 30)
-          }
-          
-        })
-        .edgesIgnoringSafeArea(.all)
-        .background(Color.white.edgesIgnoringSafeArea(.all))
-      }
-    }.onAppear{
-        self.isFavorite = self.presenter.game.isFavorite
+        }.onAppear{
+            self.isFavorite = ((self.presenter.detailData?.isFavorite) != false)
+            //            self.presenter.detailData
+        }
     }
-  }
 }
 
 extension DetailView {
-  var spacer: some View {
-    Spacer()
-  }
-  
-  var loadingIndicator: some View {
-    VStack {
-      Text("Loading...")
-      ActivityIndicator()
+    var spacer: some View {
+        Spacer()
     }
-  }
+    
+    var loadingIndicator: some View {
+        VStack {
+            Text("Loading...")
+            ActivityIndicator()
+        }
+    }
 }
 
 

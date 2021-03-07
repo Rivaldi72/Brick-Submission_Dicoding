@@ -8,11 +8,14 @@
 import SwiftUI
 import SDWebImageSwiftUI
 import RealmSwift
+import Common
+import Core
+import Game
 
 struct CardListView: View {
     
-    let allGames: GameModel
-    var presenter: HomePresenter
+    let allGames: GameDomainModel
+    var presenter: FavoritePresenter<Int, Bool, Interactor<Int, Bool, UpdateFavoriteGameRepository<GetAllGamesLocale, DetailGameTransformer>>>
     var body: some View {
         
         HStack(alignment: .center, spacing: 13){
@@ -44,9 +47,9 @@ struct CardListView: View {
                             VStack(alignment: .trailing, content: {
                                 
                                 Button(action: {
-                                    self.presenter.addToFavorite(game: allGames)
+                                    presenter.addToFavorite(request: allGames.id)
                                 }) {
-                                    Image(self.allGames.isFavorite ? "love_active" : "love_inactive")
+                                    Image(uiImage: CommonImage(named: self.allGames.isFavorite ? "love_active" : "love_inactive")!)
                                         .resizable()
                                         .frame(width: 18, height: 18, alignment: .trailing)
                                 }
@@ -63,7 +66,7 @@ struct CardListView: View {
                         HStack(alignment: .center){
                             
                             HStack(alignment: .center){
-                                Image("pc")
+                                Image(uiImage: CommonImage(named: "pc")!)
                                     .resizable()
                                     .frame(width: 12, height: 12)
                             }

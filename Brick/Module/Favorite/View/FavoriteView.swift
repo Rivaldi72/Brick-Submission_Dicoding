@@ -7,15 +7,18 @@
 
 import SwiftUI
 import SDWebImageSwiftUI
+import Common
+import Game
+import Core
 
 struct FavoriteView : View {
     
-    @ObservedObject var presenter: FavoritePresenter
+    @ObservedObject var presenter: GetListPresenter<Any, GameDomainModel, Interactor<Any, [GameDomainModel], GetFavoriteGamesRepository<GetFavoriteGamesLocale,  AllGameTransformer>>>
     //    @State var index = 0
     @State var columns = Array(repeating: GridItem(.flexible(), spacing: 15), count: 2)
     @State var hasTimeElapsed = false
     
-    init(presenter: FavoritePresenter) {
+    init(presenter: GetListPresenter<Any, GameDomainModel, Interactor<Any, [GameDomainModel], GetFavoriteGamesRepository<GetFavoriteGamesLocale,  AllGameTransformer>>>) {
         self.presenter = presenter
     }
     
@@ -30,11 +33,11 @@ struct FavoriteView : View {
                 })
             } else {
                 
-                if self.presenter.favoriteGames.count != 0 {
+                if self.presenter.list.count != 0 {
                     LazyVStack{
                         LazyVGrid(columns: self.columns,spacing: 25){
                             
-                            ForEach(self.presenter.favoriteGames){game in
+                            ForEach(self.presenter.list){game in
                                 
                                 GridView(game: game, presenter: self.presenter)
                             }
@@ -53,10 +56,10 @@ struct FavoriteView : View {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 hasTimeElapsed = true
             }
-            self.presenter.getFavoriteGames()
+            self.presenter.getList(request: nil)
         }
         .background(
-            Image("bg_home_transparent")
+            Image(uiImage: CommonImage(named: "bg_home_transparent")!)
                 .resizable()
                 .edgesIgnoringSafeArea(.all)
                 .frame(width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height)
@@ -67,8 +70,8 @@ struct FavoriteView : View {
 
 struct GridView : View {
     
-    var game: GameModel
-    var presenter: FavoritePresenter
+    var game: GameDomainModel
+    var presenter: GetListPresenter<Any, GameDomainModel, Interactor<Any, [GameDomainModel], GetFavoriteGamesRepository<GetFavoriteGamesLocale,  AllGameTransformer>>>
     @Namespace var namespace
     
     var body: some View{
@@ -106,7 +109,7 @@ struct GridView : View {
                     .fontWeight(.bold)
                     .lineLimit(1)
                 
-                self.presenter.linkBuilder(for: game) {
+                self.linkDetailBuilder(for: game) {
                     Text("Detail")
                         .foregroundColor(.white)
                         .padding(.vertical,10)
@@ -127,5 +130,14 @@ struct GridView : View {
             }
             
         }
+    }
+    func linkDetailBuilder<Content: View>(
+        for allGames: GameDomainModel,
+        @ViewBuilder content: () -> Content
+    ) -> some View {
+        
+        NavigationLink(
+            destination: HomeRouter().makeDetailView(for: allGames.id)
+        ) { content() }
     }
 }
